@@ -98,42 +98,58 @@ if (firstPageButton.classList.contains('active')) {
   }
 }
 
-// Adding functionality to the pagination buttons
+/* 
+  Adding functionality to the pagination buttons
+*/
+
 const pagination = document.querySelector('.pagination'); // Selecting the Pagination div
 
+// Selecting all the pagination links
 const pageLinks = document.querySelectorAll('.pagination a');
 
+// Listener Events whenever the user clicks a button
 pagination.addEventListener('click', e => {
-  if (e.target.tagName == 'A') {
+  if (e.target.tagName == 'A') { // Checks if the target is an anchor
+    // The loop below removes active class from all other anchors
     for (let i = 0; i < pageLinks.length; i++) {
       if (pageLinks[i].classList.contains('active')) {
         pageLinks[i].classList.remove('active');
       }
     }
-    e.target.className = 'active';
+    e.target.className = 'active'; // Sets the active class only to the element the user clicks
+
+    /*
+      The two Loops below matches the indexes of the arrays
+      in the tenStudentPerPage array we created before with the
+      indexes of our page links and show or hide the students array
+    */
+
     for (let i = 0; i < pageLinks.length; i++) {
       if (pageLinks[i].classList.contains('active')) {
         const showPage = tenStudentsPerPage[i];
         for (let i = 0; i < showPage.length; i++) {
-          showPage[i].style.display = 'block';
-          if (typeof showPage[i] == undefined) {
-            return 'Undefined Value';
+          if (showPage[i] !== undefined) {
+            showPage[i].style.display = 'block';
           }
         }
       }
     }
-    // for (let i = 0; i < pageLinks.length; i++) {
-    //   if (!pageLinks[i].classList.contains('active')) {
-    //     const showPage = tenStudentsPerPage[i];
-    //     for (let i = 0; i < showPage.length; i++) {
-    //       showPage.style.display = 'none';
-    //     }
-    //   }
-    // }
+    for (let i = 0; i < pageLinks.length; i++) {
+      if (!pageLinks[i].classList.contains('active')) {
+        const showPage = tenStudentsPerPage[i];
+        for (let i = 0; i < showPage.length; i++) {
+          if (showPage[i] !== undefined) {
+            showPage[i].style.display = 'none';
+          }
+        }
+      }
+    }
   }
-});
+}); // End of the Event Listener
 
-// Tip: If you created a function above to show/hide list items, it could be helpful here
+/*
+  The Search Bar
+*/
 
 
 
