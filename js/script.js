@@ -107,7 +107,7 @@ const pagination = document.querySelector('.pagination'); // Selecting the Pagin
 // Selecting all the pagination links
 const pageLinks = document.querySelectorAll('.pagination a');
 
-// Listener Events whenever the user clicks a button
+// Listener Event - whenever the user clicks a button
 pagination.addEventListener('click', e => {
   if (e.target.tagName == 'A') { // Checks if the target is an anchor
     // The loop below removes active class from all other anchors
@@ -123,36 +123,52 @@ pagination.addEventListener('click', e => {
       in the tenStudentPerPage array we created before with the
       indexes of our page links and show or hide the students array
     */
-
+    // The loop below iterates through the array of page links
     for (let i = 0; i < pageLinks.length; i++) {
+      // Checks to see if the link has the active class
       if (pageLinks[i].classList.contains('active')) {
+        // Stores the array that matches the index of link in a variable
         const showPage = tenStudentsPerPage[i];
+        // Iterates through the array and shows it
         for (let i = 0; i < showPage.length; i++) {
+          // Checks to see if any item inside the array is undefined
           if (showPage[i] !== undefined) {
-            showPage[i].style.display = 'block';
+            showPage[i].style.display = 'block'; // Display the items
           }
         }
       }
     }
+    // The loop below iterates through the array of page links
     for (let i = 0; i < pageLinks.length; i++) {
+      // Checks to see if the link does not have the active class
       if (!pageLinks[i].classList.contains('active')) {
+        // Stores the array that matches the index of link in a variable
         const showPage = tenStudentsPerPage[i];
+        // Iterates through the array and hides it
         for (let i = 0; i < showPage.length; i++) {
+          // Checks to see if any item inside the array is undefined
           if (showPage[i] !== undefined) {
-            showPage[i].style.display = 'none';
+            showPage[i].style.display = 'none'; // Hide the items
           }
         }
       }
     }
-  }
+  } // End of Conditional Statement
 }); // End of the Event Listener
 
 /*
   The Search Bar
 */
 
+const pageHeader = document.querySelector('.page-header'); // Selects the page header and inserts it into a variable
 
-
-
-
+const searchDiv = document.createElement('div'); // Creates a div
+searchDiv.className = 'student-search'; // Sets a classname
+const input = document.createElement('input'); // Creates an input
+input.setAttribute('placeholder', 'Search for students...'); // Setting a placeholder attribute to the input
+const searchButton = document.createElement('button'); // Creating the button element
+searchButton.textContent = 'Search'; // Setting the button's text content
+searchDiv.appendChild(input); // Appending the input to the div
+searchDiv.appendChild(searchButton); // Appending the button to the div
+pageHeader.appendChild(searchDiv); // Appending the div to html document
 
