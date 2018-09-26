@@ -186,9 +186,10 @@ const searchBtn = document.querySelector('.student-search button'); // Selects t
 // The event listener below listens for any keyups
 query.addEventListener('keyup', e => {
   let h3;
-  const filter = query.value.toUpperCase();
+  const filter = query.value.toUpperCase(); // Stores the search value and makes it uppercase
   for (let i = 0; i < totalStudents.length; i++) {
-    h3 = totalStudents[i].querySelector('.student-details h3');
+    h3 = totalStudents[i].querySelector('.student-details h3'); // Selects each student's name and assign them into a variable
+    // Checks to see if the student's name matches the search input
     if (h3.textContent.toUpperCase().indexOf(filter) > -1) {
       totalStudents[i].style.display = 'block';
       h2.style.display = 'none';
@@ -198,13 +199,14 @@ query.addEventListener('keyup', e => {
     }
   }
 });
-
+// The event listener below listens for clicks in the search button
 searchBtn.addEventListener('click', e => {
   hideStudents();
   let h3;
-  const filter = query.value.toUpperCase();
+  const filter = query.value.toUpperCase();  // Stores the search value and makes it uppercase
   for (let i = 0; i < totalStudents.length; i++) {
-    h3 = totalStudents[i].querySelector('.student-details h3');
+    h3 = totalStudents[i].querySelector('.student-details h3');  // Selects each student's name and assign them into a variable
+    // Checks to see if the student's name matches the search input
     if (h3.textContent.toUpperCase().indexOf(filter) > -1) {
       totalStudents[i].style.display = 'block';
       h2.style.display = 'none';
