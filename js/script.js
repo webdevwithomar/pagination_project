@@ -7,6 +7,8 @@ FSJS project 2 - List Filter and Pagination
 
 const page = document.querySelector('.page'); // Selects the div with the class .page
 
+const studentListUl = document.querySelector('.student-list'); // Selects the student list
+
 const totalStudents = document.querySelectorAll('.student-item'); // Selects elements that has the class .student-item
 
 const pagesForStudents = Math.ceil(totalStudents.length / 10); // Calculating pages per 10 students
@@ -172,3 +174,21 @@ searchDiv.appendChild(input); // Appending the input to the div
 searchDiv.appendChild(searchButton); // Appending the button to the div
 pageHeader.appendChild(searchDiv); // Appending the div to html document
 
+const h2 = document.createElement('h2');
+h2.textContent = 'Sorry no students found :(';
+studentListUl.appendChild(h2);
+h2.style.display = 'none';
+
+const query = document.querySelector('.student-search input');
+query.addEventListener('keyup', e => {
+  let h3;
+  const filter = query.value.toUpperCase();
+  for (let i = 0; i < totalStudents.length; i++) {
+    h3 = totalStudents[i].querySelector('.student-details h3');
+    if (h3.textContent.toUpperCase().indexOf(filter) > -1) {
+      totalStudents[i].style.display = 'block';
+    } else {
+      totalStudents[i].style.display = 'none';
+    }
+  }
+});
