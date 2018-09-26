@@ -174,12 +174,16 @@ searchDiv.appendChild(input); // Appending the input to the div
 searchDiv.appendChild(searchButton); // Appending the button to the div
 pageHeader.appendChild(searchDiv); // Appending the div to html document
 
-const h2 = document.createElement('h2');
-h2.textContent = 'Sorry no students found :(';
-studentListUl.appendChild(h2);
-h2.style.display = 'none';
+const h2 = document.createElement('h2'); // Creates a new h2 element
+h2.textContent = 'No other students found :('; // Setting its text content
+studentListUl.appendChild(h2); // Appending the h2 to the ul
+h2.style.display = 'none'; // Hiding as default
 
-const query = document.querySelector('.student-search input');
+const query = document.querySelector('.student-search input'); // Selecting the search box
+
+const searchBtn = document.querySelector('.student-search button'); // Selects the search button
+
+// The event listener below listens for any keyups
 query.addEventListener('keyup', e => {
   let h3;
   const filter = query.value.toUpperCase();
@@ -187,8 +191,27 @@ query.addEventListener('keyup', e => {
     h3 = totalStudents[i].querySelector('.student-details h3');
     if (h3.textContent.toUpperCase().indexOf(filter) > -1) {
       totalStudents[i].style.display = 'block';
+      h2.style.display = 'none';
     } else {
       totalStudents[i].style.display = 'none';
+      h2.style.display = 'block';
     }
   }
+});
+
+searchBtn.addEventListener('click', e => {
+  hideStudents();
+  let h3;
+  const filter = query.value.toUpperCase();
+  for (let i = 0; i < totalStudents.length; i++) {
+    h3 = totalStudents[i].querySelector('.student-details h3');
+    if (h3.textContent.toUpperCase().indexOf(filter) > -1) {
+      totalStudents[i].style.display = 'block';
+      h2.style.display = 'none';
+    } else {
+      totalStudents[i].style.display = 'none';
+      h2.style.display = 'block';
+    }
+  }
+  query.value = '';
 });
